@@ -18,13 +18,13 @@ router.get('/:id', (req, res) => {
 
 // POST a new user
 router.post('/', (req, res) => {
-  const { name, email, cpf, rg, password } = req.body; // Include rg
+  const { name, email, cpf, rg, password } = req.body;
   const user = {
     id: users.length + 1,
     name,
     email,
     cpf,
-    rg,  // Include rg
+    rg,
     password
   };
   users.push(user);
@@ -36,11 +36,11 @@ router.put('/:id', (req, res) => {
   const user = users.find(u => u.id === parseInt(req.params.id));
   if (!user) return res.status(404).send('User not found');
 
-  const { name, email, cpf, rg, password } = req.body; // Include rg
+  const { name, email, cpf, rg, password } = req.body;
   user.name = name || user.name;
   user.email = email || user.email;
   user.cpf = cpf || user.cpf;
-  user.rg = rg || user.rg; // Update rg
+  user.rg = rg || user.rg;
   user.password = password || user.password;
 
   res.json(user);
