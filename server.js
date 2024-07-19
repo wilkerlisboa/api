@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // Adicionado para permitir CORS
+const cors = require('cors');
 
 const users = require('./users');
 const products = require('./products');
@@ -10,8 +10,12 @@ const students = require('./students');
 const app = express();
 const port = 3000;
 
-// Middleware para permitir CORS
-app.use(cors());
+// Configuração do CORS
+app.use(cors({
+  origin: '*', // Permite qualquer origem
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite os métodos HTTP que você precisa
+  allowedHeaders: ['Content-Type'], // Permite o cabeçalho Content-Type
+}));
 
 // Middleware para parsing de JSON
 app.use(bodyParser.json());
