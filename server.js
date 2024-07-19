@@ -10,11 +10,11 @@ const students = require('./students');
 const app = express();
 const port = 3000;
 
-// Configuração do CORS
+// Configuração do CORS com opções mais detalhadas
 app.use(cors({
-  origin: '*', // Permite qualquer origem
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite os métodos HTTP que você precisa
-  allowedHeaders: ['Content-Type'], // Permite o cabeçalho Content-Type
+  origin: 'http://localhost:5173', // Permitir apenas seu frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permitir os métodos HTTP necessários
+  allowedHeaders: ['Content-Type', 'Authorization'], // Permitir cabeçalhos necessários
 }));
 
 // Middleware para parsing de JSON
@@ -25,6 +25,9 @@ app.use('/users', users);
 app.use('/products', products);
 app.use('/employees', employees);
 app.use('/students', students);
+
+// Habilitar CORS para todas as rotas para requisições OPTIONS
+app.options('*', cors());
 
 // Iniciar o servidor
 app.listen(port, () => {
