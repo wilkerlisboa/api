@@ -1,28 +1,21 @@
+// app.js
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors'); // Adicionado para permitir CORS
-
-const users = require('./users');
-const products = require('./products');
-const employees = require('./employees');
-const students = require('./students');
-
 const app = express();
-const port = 3000;
+const bodyParser = require('body-parser');
 
-// Middleware para permitir CORS
-app.use(cors());
+const users = require('./routes/users');
+const products = require('./routes/products');
+const employees = require('./routes/employees');
+const students = require('./routes/students');
+const sales = require('./routes/sales'); // Adicione esta linha
 
-// Middleware para parsing de JSON
 app.use(bodyParser.json());
 
-// Rotas
 app.use('/users', users);
 app.use('/products', products);
 app.use('/employees', employees);
 app.use('/students', students);
+app.use('/sales', sales); // Adicione esta linha
 
-// Iniciar o servidor
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
-});
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
