@@ -3,11 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // Importe suas rotas
-const users = require('./routes/users');
-const products = require('./routes/products');
-const employees = require('./routes/employees');
-const students = require('./routes/students');
-const sales = require('./routes/sales'); // Adicione esta linha se necessário
+const users = require('./users');
+const products = require('./products');
+const employees = require('./employees');
+const students = require('./students');
+const sales = require('./sales'); // Adicione esta linha se necessário
 
 app.use(bodyParser.json());
 
